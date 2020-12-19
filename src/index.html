@@ -1,39 +1,96 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Homework 10</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="./styles.css"/> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кубики</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+  <!-- <link rel="stylesheet" href="./node_modules/basiclightbox/dist/basicLightbox.min.css"> -->
+
 </head>
-
 <body>
-  <div class="toolbar">
-    <!-- Разметка переключателя темы -->
-    <div class="theme-switch">
-      <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-        <use href="./images/sprite.svg#sun"></use>
-      </svg>
+  <!-- <audio autoplay src="./images/02865.mp3"></audio -->
+  <!-- <bgsound src="./images/02865.mp3" loop="100" volume="50" balance="0" /> -->
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Слови жаб</h1>
+      <div class="wrapper-header-element">
 
-      <div class="theme-switch__control">
-        <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
-          aria-label="Переключить между тёмной и светлой темой" />
-        <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
-        </label>
-        <div aria-hidden="true" class="theme-switch__marker"></div>
+        <ul class="menu-list">
+          <li>
+            <button class="btn menu-btn-start" type="button">start</button>
+          </li>
+          <li>
+            <button class="btn menu-btn-newGame" type="button">new game</button>
+          </li>
+        </ul>
+        <div class="header-wrapper">
+          <ul>
+            <li>
+              <p>Счет</p>
+              <span class="header-text-points">0</span>
+            </li>
+            <li>
+              <p>Время</p>
+              <!-- <div id="app"></div> СКОПИР ТАЙМЕР -->
+              <span class="timer">00.00</span>
+            </li>
+          </ul>
+        </div>
+        <div class="wrapper-list-players">
+          <h2>Таблица рекордов</h2>
+          <ul class=" list-players">
+
+          </ul>
+        </div>
       </div>
+    </header>
+    <main class="main">
+      <section class="game-area">
+        <div class="wrapper-game-area">
+        </div>
+      </section>
+    </main>
 
-      <svg class="theme-switch__icon" aria-label="Иконка луны">
-        <use href="./images/sprite.svg#moon"></use>
-      </svg>
+
+    <!-- //Модалка добавить открытие по завершению игры -->
+    <div class="backdrop js-backdrop">
+      <div class="modal">
+        <form action="" class="form-action">
+          <h3>Не плохо!!!</h3>
+          <p class="points-result-js"></p>
+          <p>Напиши имя и попади в историю!</p>
+          <input type="text" class="input-js">
+          <button type="submit" class="btn btn-submit">Ок</button>
+
+          <button type="button" class="close-btn">
+            <svg width="25px" height="25px">
+              <use class="icon-close-menu-svg" href="./images/sprite.svg#icon-close"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
+    <!-- <template id="modal">
+    <div class="modal">
+       
+    </div>
+</template> -->
 
-  <!-- В этот список рендери разметку меню -->
-  <ul class="menu js-menu"></ul>
+    <div class="list-static-frog">
+      <div class="static-frog-grenn"></div>
+      <p>"Зеленая жаба"+2 очка</p>
+      <div class="static-frog-rasta"></div>
+      <p>"Жаба Растаман"+3 очка</p>
+      <div class="static-frog-orange"></div>
+      <p>"Желтая жаба"-5 очков</p>
+    </div>
+    <p>Игра длиться 30 сек. За это время постарайтесь набрать как-можно больше очков=)</p>
+  </div>
+  <!-- <script src="./js/progres-bar.js" type="module"></script> -->
+    <!-- <script src="./index.js" type="module"></script> -->
 </body>
 
 </html>
