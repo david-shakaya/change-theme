@@ -74,10 +74,12 @@ p {
 }
 
 .wrapper-game-area {
+  position: relative;
   border: black solid 2px;
+  border-bottom: white solid 60px;
   width: 800px;
   height: 400px;
-  background-color: antiquewhite;
+  background-color: transparent;
 }
 .list-static-frog {
   display: flex;
@@ -88,8 +90,7 @@ p {
 } */
 .box-red-js {
   position: absolute;
-  z-index: 2;
-  transform: translate(10px, 347px);
+  transform: translate(10px, 402px);
 
   width: 55px;
   height: 55px;
