@@ -90,7 +90,8 @@ p {
 } */
 .box-red-js {
   position: absolute;
-  transform: translate(10px, 402px);
+
+  /* transform: translate(10px, 402px); */
 
   width: 55px;
   height: 55px;
@@ -102,30 +103,19 @@ p {
 .move {
   position: absolute;
   margin: 12px;
-  transform: translateY(-85%);
   transition: 2500ms cubic-bezier(0, 0, 0, 0);
-
   z-index: 2;
-
   width: 55px;
   height: 55px;
-  background-color: blueviolet;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-.static-frog-grenn {
-  width: 55px;
-  height: 55px;
-  /* background-image: url(../images/frog.png); */
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.box-rasta {
+.box-green-js {
   position: absolute;
   width: 55px;
   height: 55px;
-  /* background-image: url(../images/frog-rasta.png); */
+  background-color: green;
   background-size: contain;
   background-repeat: no-repeat;
 }
