@@ -22,18 +22,18 @@ const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 
 
-const balls = [
-    'url(./images/b1.png)',
-    'url(./images/b2.png)',
-    'url(./images/b3.png)',
-    'url(./images/b4.png)',
-    'url(./images/b5.png)',
-    'url(./images/b6.png)',
-    'url(./images/b7.png)'
-]
-const randomBalls =()=> balls[Math.floor(Math.random() * balls.length)];
-console.log(randomBalls());
-console.log(randomBalls());
+// const balls = [
+//     'url(./images/b1.png) contain)',
+//     'url(./images/b2.png) contain)',
+//     'url(./images/b3.png) contain)',
+//     'url(./images/b4.png) contain)',
+//     'url(./images/b5.png) contain)',
+//     'url(./images/b6.png) contain)',
+//     'url(./images/b7.png) contain)'
+// ]
+// const randomBalls =()=> balls[Math.floor(Math.random() * balls.length)];
+// console.log(randomBalls());
+// console.log(randomBalls());
 // const x = Math.floor(Math.random() * 780);
 // const newX = Math.floor(Math.random() * 780);
 
@@ -43,67 +43,60 @@ let delta = 0
 let beta = 0
 let zeta = 0
 let timer = 0
+let points = 0;
 // Рандомное местоположение
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
 const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
 const defBoxBlue = () => boxBlue.style.transform = `translate(${zeta = randomNumber()}px, ${402}px)`;
-// Рандомный цвет шарика
-const defBoxBacground = () => box.style.background  = `${randomBalls()}` ;
-const defBoxGrenBacground = () =>  boxGreen.style.background  = `${randomBalls()}`;
-const defBoxBlueBacground = () => boxBlue.style.background  = `${randomBalls()}`;
+// // Рандомный цвет шарика
+// const defBoxBacground = () => box.style.background  = `${randomBalls()}` ;
+// const defBoxGrenBacground = () =>  boxGreen.style.background  = `${randomBalls()}`;
+// const defBoxBlueBacground = () => boxBlue.style.background  = `${randomBalls()}`;
 
 defBox()
 defBoxGren()
 defBoxBlue()
 
-defBoxBacground()
-defBoxGrenBacground()
-defBoxBlueBacground()
+// defBoxBacground()
+// defBoxGrenBacground()
+// defBoxBlueBacground()
 btnStartRef.addEventListener('click', startGame)
 
 function startGame() {
     
     startTimer()
-   
-    // box.addEventListener('click', removeClass)
-    // box.classList.add('move')
-    // box.style.transform = `translate(${delta}px, ${-80}px)`
-    // const idInterval1 = setInterval(fn, 1000);
-}
-
-function fn() {
-    // console.log('idInterval1');
-    box.classList.add('move')
-    // box.style.transform = `translate(${delta}px, ${-80}px)`; //Задает расположение вверх двигает
-
-        // box.classList.remove('move') 
-        // boxGreen.classList.add('move')
-        // boxGreen.style.transform = `translate(${beta}px, ${-80}px)`; //Двигает зеленый бокс вверх
+  
 }
 
 function removeClass(e) {
     if (e) {
-        console.log('ffdfd');
-        // return
+        console.log(e);
+        countsPoints()
     }
-    
     defBox() // Местоположение перед выездом
     
-defBoxBacground()
+// defBoxBacground()
 
         box.classList.remove('move') 
         
 }
-function removeClassGreen() {
+function removeClassGreen(e) {
+    if (e) {
+        console.log(e);
+        countsPoints()
+    }
     defBoxGren()
-defBoxGrenBacground()
+// defBoxGrenBacground()
 
     boxGreen.classList.remove('move-green') 
 }
 
-function removeClassBlue() {
+function removeClassBlue(e) {
+    if (e) {
+        console.log(e);
+        countsPoints()
+    }
     defBoxBlue()
-defBoxBlueBacground()
     boxBlue.classList.remove('move-blue') 
 }
 
@@ -118,13 +111,17 @@ setInterval(() => {
 }, 1000);
 }
 
+function countsPoints() {
+    points += 2
+    spanPoints.textContent = points
+}
 
 function createAndRemyveBox() {
 
  if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
     //  defBoxGren()
     box.classList.add('move')
-    defBoxBacground()
+    // defBoxBacground()
      box.addEventListener('click', removeClass)
      box.style.transform = `translate(${delta}px, ${-25}px)`;
     }
@@ -136,7 +133,7 @@ function createAndRemyveGreenBox() {
 if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||timer===17 || timer ===20 || timer===23 || timer===26 ) {
     //  defBoxGren()
     boxGreen.classList.add('move-green')
-    defBoxGrenBacground()
+    // defBoxGrenBacground()
      boxGreen.addEventListener('click', removeClassGreen)
     boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
 
@@ -150,13 +147,14 @@ if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||tim
 function createAndRemyveBlueBox() {
 if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||timer===13 || timer ===15 || timer===17 || timer===19||timer===21 || timer ===23 || timer===25 || timer===27|| timer===29 ) {
     //  defBoxGren()
-defBoxBlueBacground()
+// defBoxBlueBacground()
     boxBlue.classList.add('move-blue')
-     boxBlue.addEventListener('click', removeClassBlue)
+    boxBlue.addEventListener('click', removeClassBlue)
     boxBlue.style.transform = `translate(${zeta}px, ${-25}px)`; //Двигает зеленый бокс вверх
     }
      if (timer === 4 || timer === 6|| timer === 8 || timer === 10||timer===12 || timer ===14 || timer===16 || timer===18 || timer===20 || timer ===22 || timer===24 || timer===26 || timer===28|| timer ===30) {
-    removeClassBlue()     
+         removeClassBlue()   
+         boxBlue.removeEventListener('click', removeClassBlue)
         }
 }
 

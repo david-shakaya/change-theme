@@ -96,7 +96,7 @@ p {
 
   width: 55px;
   height: 55px;
-  background-color: blueviolet;
+  background-image: url(./images/b1.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -138,7 +138,7 @@ p {
   position: absolute;
   width: 55px;
   height: 55px;
-  background-color: green;
+  background-image: url(./images/b5.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -147,7 +147,7 @@ p {
   position: absolute;
   width: 55px;
   height: 55px;
-  /* background-color: blue; */
+  background: url(./images/b4.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
