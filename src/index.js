@@ -65,16 +65,20 @@ function removeClass(e) {
     
         defBox() // Местоположение перед выездом
         box.classList.remove('move') 
-        // boxGreen.classList.add('move')
-        // boxGreen.style.transform = `translate(${beta}px, ${-80}px)`; //Двигает зеленый бокс вверх
+        
+}
+function removeClassGreen() {
+    defBoxGren()
+    boxGreen.classList.remove('move-green') 
 }
 
 
 function startTimer() {
 setInterval(() => {
     timer +=1
-    // console.log(spanTaimerRef.textContent = timer);
-createAndRemyveBox()
+    spanTaimerRef.textContent = timer
+    createAndRemyveBox()
+    createAndRemyveGreenBox()
 
 }, 1000);
 }
@@ -87,9 +91,20 @@ function createAndRemyveBox() {
      box.classList.add('move')
      box.addEventListener('click', removeClass)
      box.style.transform = `translate(${delta}px, ${-25}px)`;
-           
     }
      if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
     removeClass()     
         }
 }
+function createAndRemyveGreenBox() {
+if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||timer===17 || timer ===20 || timer===23 || timer===26 ) {
+    //  defBoxGren()
+    boxGreen.classList.add('move-green')
+     boxGreen.addEventListener('click', removeClassGreen)
+    boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
+    }
+     if (timer === 4 || timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
+    removeClassGreen()     
+        }
+}// boxGreen.classList.add('move')
+        // boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
