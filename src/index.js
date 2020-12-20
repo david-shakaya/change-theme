@@ -2,6 +2,7 @@
 import '../src/styles.css'
 
 
+
 // const buttonRef = document.querySelector('.button-js');
 const divGameAreaRef = document.querySelector('.wrapper-game-area');
 const btnStartRef = document.querySelector('.menu-btn-start');
@@ -15,8 +16,12 @@ const bodyRef = document.querySelector('body');
 
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
+divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
+
 const box = document.querySelector('.box-red-js');
 const boxGreen = document.querySelector('.box-green-js');
+const boxBlue = document.querySelector('.box-blue-js');
+
 
 
 // const x = Math.floor(Math.random() * 780);
@@ -26,14 +31,16 @@ const boxGreen = document.querySelector('.box-green-js');
 
 let delta = 0
 let beta = 0
+let zeta = 0
 let idInterval1;
 let idTime2;
 let timer = 0
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
 const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
-
+const defBoxBlue = () =>boxBlue.style.transform = `translate(${zeta = randomNumber()}px, ${402}px)`;
 defBox()
 defBoxGren()
+defBoxBlue()
 
 btnStartRef.addEventListener('click', startGame)
 
@@ -72,6 +79,11 @@ function removeClassGreen() {
     boxGreen.classList.remove('move-green') 
 }
 
+function removeClassBlue() {
+    defBoxBlue()
+    boxBlue.classList.remove('move-blue') 
+}
+
 
 function startTimer() {
 setInterval(() => {
@@ -79,7 +91,7 @@ setInterval(() => {
     spanTaimerRef.textContent = timer
     createAndRemyveBox()
     createAndRemyveGreenBox()
-
+    createAndRemyveBlueBox()
 }, 1000);
 }
 
@@ -106,5 +118,18 @@ if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||tim
      if (timer === 4 || timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
     removeClassGreen()     
         }
-}// boxGreen.classList.add('move')
-        // boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
+}
+
+
+function createAndRemyveBlueBox() {
+if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||timer===13 || timer ===15 || timer===17 || timer===19||timer===21 || timer ===23 || timer===25 || timer===27|| timer===29 ) {
+    //  defBoxGren()
+    boxBlue.classList.add('move-blue')
+     boxBlue.addEventListener('click', removeClassBlue)
+    boxBlue.style.transform = `translate(${zeta}px, ${-25}px)`; //Двигает зеленый бокс вверх
+    }
+     if (timer === 4 || timer === 6|| timer === 8 || timer === 10||timer===12 || timer ===14 || timer===16 || timer===18 || timer===20 || timer ===22 || timer===24 || timer===26 || timer===28|| timer ===30) {
+    removeClassBlue()     
+        }
+}
+

@@ -100,9 +100,6 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.qwe {
-  background-color: darkgray;
-}
 
 .move {
   position: absolute;
@@ -126,6 +123,17 @@ p {
   background-repeat: no-repeat;
 }
 
+.move-blue {
+  position: absolute;
+  margin: 12px;
+  transition: 1000ms cubic-bezier(0, 0.42, 0.6, 0.7);
+  z-index: 2;
+  width: 55px;
+  height: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .box-green-js {
   position: absolute;
   width: 55px;
@@ -134,17 +142,12 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.static-frog-rasta {
-  width: 55px;
-  height: 55px;
-  /* background-image: url(../images/frog-rasta.png); */
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.box-danger {
+
+.box-blue-js {
   position: absolute;
   width: 55px;
   height: 55px;
+  background-color: blue;
   /* background-image: url(../images/danger-frog.png); */
   background-size: contain;
   background-repeat: no-repeat;
@@ -258,6 +261,12 @@ body.show-modal .modal {
 
   transform: scale(1.1);
   transition: transform 200ms ease-in-out;
+}
+
+.description-footer {
+  width: 750px;
+  position: absolute;
+  transform: translate(36px, -62px);
 }
 
 /* НЕБО */
