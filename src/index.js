@@ -26,56 +26,73 @@ const boxGreen = document.querySelector('.box-green-js');
 
 let delta = 0
 let beta = 0
-let idTime;
+let idInterval1;
 let idTime2;
+let timer = 0
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
-boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
+const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
 
-        defBox()
-
+defBox()
+defBoxGren()
 
 btnStartRef.addEventListener('click', startGame)
+
 function startGame() {
-
     
-    box.classList.add('move')
-    box.style.transform = `translate(${delta}px, ${-80}px)`;
-    box.addEventListener('click', removeClass)
-    
-
-         
-    idTime = setTimeout(function () {
-        console.log(idTime);
-          defBox()
-             box.classList.remove('move')
-             boxGreen.classList.add('move')
-              boxGreen.style.transform = `translate(${beta}px, ${-80}px)`;
-              box.addEventListener('click', removeClass)
-        }, 2500);    
-    
+    startTimer()
+   
+    // box.addEventListener('click', removeClass)
+    // box.classList.add('move')
+    // box.style.transform = `translate(${delta}px, ${-80}px)`
+    // const idInterval1 = setInterval(fn, 1000);
 }
+
+function fn() {
+    // console.log('idInterval1');
+    box.classList.add('move')
+    // box.style.transform = `translate(${delta}px, ${-80}px)`; //Задает расположение вверх двигает
+
+        // box.classList.remove('move') 
+        // boxGreen.classList.add('move')
+        // boxGreen.style.transform = `translate(${beta}px, ${-80}px)`; //Двигает зеленый бокс вверх
+}
+
 function removeClass(e) {
     if (e) {
-        clearTimeout(idTime)
-        }
-        defBox()
-        box.classList.remove('move')
-        boxGreen.classList.add('move')
-    boxGreen.style.transform = `translate(${beta}px, ${-80}px)`;
-    
-
-
-    
+        console.log('ffdfd');
+        // return
     }
-
-
-        boxGreen.addEventListener('click', removeClassNew)
-
-
-function removeClassNew() {
-
-
-    boxGreen.classList.remove('move')
-     box.style.transform = `translate(${delta}px, ${-80}px)`;
-    box.classList.add('move')
+    
+        defBox() // Местоположение перед выездом
+        box.classList.remove('move') 
+        // boxGreen.classList.add('move')
+        // boxGreen.style.transform = `translate(${beta}px, ${-80}px)`; //Двигает зеленый бокс вверх
 }
+
+
+function startTimer() {
+setInterval(() => {
+    timer +=1
+    // console.log(spanTaimerRef.textContent = timer);
+
+
+ if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
+    //  defBoxGren()
+     box.classList.add('move')
+     box.addEventListener('click', removeClass)
+     box.style.transform = `translate(${delta}px, ${-80}px)`;
+           
+    }
+    
+     if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
+    removeClass()
+//    box.style.transform = `translate(${delta}px, ${-80}px)`;
+           
+        }
+
+
+}, 1000);
+}
+
+
+
