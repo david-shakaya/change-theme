@@ -74,25 +74,22 @@ function startTimer() {
 setInterval(() => {
     timer +=1
     // console.log(spanTaimerRef.textContent = timer);
-
-
- if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
-    //  defBoxGren()
-     box.classList.add('move')
-     box.addEventListener('click', removeClass)
-     box.style.transform = `translate(${delta}px, ${-80}px)`;
-           
-    }
-    
-     if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
-    removeClass()
-//    box.style.transform = `translate(${delta}px, ${-80}px)`;
-           
-        }
-
+createAndRemyveBox()
 
 }, 1000);
 }
 
 
+function createAndRemyveBox() {
 
+ if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
+    //  defBoxGren()
+     box.classList.add('move')
+     box.addEventListener('click', removeClass)
+     box.style.transform = `translate(${delta}px, ${-25}px)`;
+           
+    }
+     if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
+    removeClass()     
+        }
+}

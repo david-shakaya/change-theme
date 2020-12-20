@@ -99,6 +99,9 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.qwe {
+  background-color: darkgray;
+}
 
 .move {
   position: absolute;
