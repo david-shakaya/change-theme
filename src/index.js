@@ -16,10 +16,13 @@ const bodyRef = document.querySelector('body');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
+// const createTextPoints = ()=> divGameAreaRef.insertAdjacentHTML('beforebegin', '<span class="text-animation-js" >+2</span>');
 
 const box = document.querySelector('.box-red-js');
 const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
+const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
+
 
 
 // const balls = [
@@ -37,13 +40,15 @@ const boxBlue = document.querySelector('.box-blue-js');
 // const x = Math.floor(Math.random() * 780);
 // const newX = Math.floor(Math.random() * 780);
 
-    const randomNumber = () => Math.floor(Math.random() * 780);
+    const randomNumber = () => Math.floor(Math.random() * 756);
 
 let delta = 0
 let beta = 0
 let zeta = 0
 let timer = 0
 let points = 0;
+
+let startIsActive = null
 // Рандомное местоположение
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
 const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
@@ -62,13 +67,33 @@ defBoxBlue()
 // defBoxBlueBacground()
 btnStartRef.addEventListener('click', startGame)
 
-function startGame() {
+function addedTextAfterClick(e) {
+      if (e) {
+        textAnimationRef().classList.add('text-animation-js')
+        console.log(e);
+        textAnimationRef().style.transform = `translate(${e.screenX}px, ${e.screenY}px)`;
+        textAnimationRef().textContent ='+2'
+    }
+    setTimeout(() => {
+        textAnimationRef().classList.remove('text-animation-js')
+        textAnimationRef().textContent =''
+    }, 500);
     
+}
+
+function startGame(e) {
+  
+    // if (startIsActive) {
+    //     return
+    // }
+    console.log(e.clientX);
+    startIsActive = true
     startTimer()
   
 }
 
 function removeClass(e) {
+    addedTextAfterClick(e)
     if (e) {
         console.log(e);
         countsPoints()
@@ -81,6 +106,7 @@ function removeClass(e) {
         
 }
 function removeClassGreen(e) {
+    addedTextAfterClick(e)
     if (e) {
         console.log(e);
         countsPoints()
@@ -92,6 +118,7 @@ function removeClassGreen(e) {
 }
 
 function removeClassBlue(e) {
+    addedTextAfterClick(e)
     if (e) {
         console.log(e);
         countsPoints()
@@ -119,35 +146,32 @@ function countsPoints() {
 function createAndRemyveBox() {
 
  if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
-    //  defBoxGren()
     box.classList.add('move')
-    // defBoxBacground()
      box.addEventListener('click', removeClass)
      box.style.transform = `translate(${delta}px, ${-25}px)`;
     }
      if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
-    removeClass()     
+         removeClass()   
+         box.addEventListener('click', removeClass)
+         
         }
 }
 function createAndRemyveGreenBox() {
 if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||timer===17 || timer ===20 || timer===23 || timer===26 ) {
-    //  defBoxGren()
     boxGreen.classList.add('move-green')
-    // defBoxGrenBacground()
      boxGreen.addEventListener('click', removeClassGreen)
     boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
 
     }
      if (timer === 4 || timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
-    removeClassGreen()     
+         removeClassGreen()   
+    boxGreen.removeEventListener('click', removeClassGreen)     
         }
 }
 
 
 function createAndRemyveBlueBox() {
 if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||timer===13 || timer ===15 || timer===17 || timer===19||timer===21 || timer ===23 || timer===25 || timer===27|| timer===29 ) {
-    //  defBoxGren()
-// defBoxBlueBacground()
     boxBlue.classList.add('move-blue')
     boxBlue.addEventListener('click', removeClassBlue)
     boxBlue.style.transform = `translate(${zeta}px, ${-25}px)`; //Двигает зеленый бокс вверх

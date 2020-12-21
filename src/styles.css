@@ -142,7 +142,20 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.span-js {
+  font-size: 10px;
+}
 
+.text-animation-js {
+  position: absolute;
+  top: -84px;
+  left: -26px;
+  z-index: 10;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+    0px -5px 35px rgba(255, 255, 255, 0.3);
+}
 .box-blue-js {
   position: absolute;
   width: 55px;
