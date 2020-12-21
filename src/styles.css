@@ -144,6 +144,9 @@ p {
 }
 .span-js {
   font-size: 10px;
+  text-shadow: 1px 1px 1px silver, -1px 1px 1px silver;
+  color: white;
+  transition: all 0.02s;
 }
 
 .text-animation-js {
@@ -152,9 +155,8 @@ p {
   left: -26px;
   z-index: 10;
   font-size: 40px;
-  color: rgba(0, 0, 0, 0.6);
-  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
-    0px -5px 35px rgba(255, 255, 255, 0.3);
+  text-shadow: -1px -1px 1px rgb(197, 194, 194), 1px -1px 1px silver;
+  color: rgb(39, 39, 39);
 }
 .box-blue-js {
   position: absolute;
