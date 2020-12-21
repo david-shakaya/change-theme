@@ -67,7 +67,7 @@ defBoxBlue()
 // defBoxBlueBacground()
 btnStartRef.addEventListener('click', startGame)
 
-function addedTextAfterClick(e) {
+function showSpan(e) {
       if (e) {
         textAnimationRef().classList.add('text-animation-js')
         console.log(e);
@@ -83,17 +83,16 @@ function addedTextAfterClick(e) {
 
 function startGame(e) {
   
-    // if (startIsActive) {
-    //     return
-    // }
-    console.log(e.clientX);
+    if (startIsActive) {
+        return
+    }
     startIsActive = true
     startTimer()
   
 }
 
 function removeClass(e) {
-    addedTextAfterClick(e)
+    showSpan(e)
     if (e) {
         console.log(e);
         countsPoints()
@@ -106,7 +105,7 @@ function removeClass(e) {
         
 }
 function removeClassGreen(e) {
-    addedTextAfterClick(e)
+    showSpan(e)
     if (e) {
         console.log(e);
         countsPoints()
@@ -118,7 +117,7 @@ function removeClassGreen(e) {
 }
 
 function removeClassBlue(e) {
-    addedTextAfterClick(e)
+    showSpan(e)
     if (e) {
         console.log(e);
         countsPoints()
