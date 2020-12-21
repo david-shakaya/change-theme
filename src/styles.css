@@ -166,22 +166,6 @@ p {
   background-repeat: no-repeat;
 }
 
-.box-orang {
-  position: absolute;
-  width: 55px;
-  height: 55px;
-  /* background-image: url(../images/frog-orang.png); */
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.static-frog-orange {
-  width: 55px;
-  height: 55px;
-  /* background-image: url(../images/frog-orang.png); */
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 .modal {
   padding: 10px;
   width: 550px;
@@ -191,18 +175,6 @@ p {
   text-align: center;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
-/* 
-#myProgress {
-  width: 100%;
-  background-color: grey;
-}
-#myBar {
-  display: flex;
-  align-items: center;
-  width: 1%;
-  height: 30px;
-  background-color: green;
-} */
 
 .close-btn {
   display: flex;
@@ -251,8 +223,8 @@ body.show-modal .modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
 
@@ -265,9 +237,10 @@ body.show-modal .modal {
 .modal {
   padding: 24px;
   border-radius: 4px;
-  max-width: 640px;
+  max-width: 450px;
   width: 100%;
-  min-height: 320px;
+  min-height: 200;
+
   background-color: #fff;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);

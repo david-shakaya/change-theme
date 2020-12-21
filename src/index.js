@@ -136,6 +136,10 @@ setInterval(() => {
     createAndRemyveBox()
     createAndRemyveGreenBox()
     createAndRemyveBlueBox()
+    if (timer === 3) {
+        onOpenModal()
+    }
+    
 }, 1000);
 }
 
@@ -183,3 +187,34 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
         }
 }
 
+
+     
+
+// Модалка 
+
+// /*  ФУНКЦИИ */
+// //Закрывает модалку при нажатии esc. На window вешаем слушатель keydown.
+// // На место колбека передаем функцию onPressEscape которая и закрівает модалку.
+function onOpenModal() {
+  window.addEventListener('keydown', onPressEscape)
+  bodyRef.classList.add('show-modal')
+}
+
+function onCloseModal() {
+  window.removeEventListener('keydown', onPressEscape)
+  bodyRef.classList.remove('show-modal')
+}
+
+function onBackdropClick(event) {
+  if (event.target === event.currentTarget) {
+   onCloseModal()
+  }
+}
+
+
+function onPressEscape (event) {
+  if (event.code === 'Escape') {
+      onCloseModal()
+    }
+  }
+  
