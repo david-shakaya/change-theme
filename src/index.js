@@ -40,7 +40,7 @@ const textAnimationRef = () => document.querySelector('.span-js'); //ищет к
 // const x = Math.floor(Math.random() * 780);
 // const newX = Math.floor(Math.random() * 780);
 
-    const randomNumber = () => Math.floor(Math.random() * 756);
+const randomNumber = () => Math.floor(Math.random() * 655);
 
 let delta = 0
 let beta = 0
@@ -70,9 +70,11 @@ btnStartRef.addEventListener('click', startGame)
 function showSpan(e) {
       if (e) {
         textAnimationRef().classList.add('text-animation-js')
-        console.log(e);
-        textAnimationRef().style.transform = `translate(${e.screenX}px, ${e.screenY}px)`;
-        textAnimationRef().textContent ='+2'
+          let Y = e.clientY
+          let X =e.clientX
+          textAnimationRef().style.top = Y + 'px'
+          textAnimationRef().style.left = X +'px' 
+          textAnimationRef().textContent ='+2'
     }
     setTimeout(() => {
         textAnimationRef().classList.remove('text-animation-js')
