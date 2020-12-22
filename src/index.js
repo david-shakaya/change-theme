@@ -4,7 +4,7 @@ import '../src/styles.css'
 
 const divGameAreaRef = document.querySelector('.wrapper-game-area');
 const btnStartRef = document.querySelector('.menu-btn-start');
-const btnNewGameRef =document.querySelector('.menu-btn-newGame');
+const btnStopRef =document.querySelector('.menu-btn-stop');
 const spanPoints = document.querySelector('.header-text-points');
 const spanTaimerRef = document.querySelector('.timer');
 const spanRemainingTimeRef =document.querySelector('.header-text-time');
@@ -16,16 +16,16 @@ const inputRef = () => document.querySelector('.input-js');
 
 
 
-
-
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
+divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-purple-js " ></div>');
 // const createTextPoints = ()=> divGameAreaRef.insertAdjacentHTML('beforebegin', '<span class="text-animation-js" >+2</span>');
 
 const box = document.querySelector('.box-red-js');
 const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
+const boxPurple = document.querySelector('.box-purple-js');
 const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
 
 //Добавля в локал хран при повторном захлде
@@ -36,28 +36,61 @@ ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">
 
 
 const randomNumber = () => Math.floor(Math.random() * 655);
+/* padStart()
+  * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
+   */
+function pad(value) {
+    return String(value).padStart('2',0)
+}
 
 let delta = 0
 let beta = 0
 let zeta = 0
+let kappa= 0
 let timer = 0
 let points = 0;
 let remainingTime = 5
 let idInterval = null
 
 let startIsActive = null
+let stopIsActive =null
 // Рандомное местоположение
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
 const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
 const defBoxBlue = () => boxBlue.style.transform = `translate(${zeta = randomNumber()}px, ${402}px)`;
+const defboxPurple = () => boxPurple.style.transform = `translate(${kappa = randomNumber()}px, ${402}px)`;
+// const defBoxPurple
 
 
 defBox()
 defBoxGren()
 defBoxBlue()
+defboxPurple()
+
+
 
 
 btnStartRef.addEventListener('click', startGame)
+btnStopRef.addEventListener('click',stopGame)
+
+function stopGame() {
+    if (stopIsActive) {
+        return
+    }
+    onOpenModal()
+         defBox()
+         box.classList.remove('move')
+          defBoxGren()
+        boxGreen.classList.remove('move-green') 
+        defBoxBlue()
+         boxBlue.classList.remove('move-blue') 
+          defboxPurple()
+         boxPurple.classList.remove('move-purple') 
+    onCloseModal()
+    remainingTime = 5
+    spanRemainingTimeRef.textContent = pad(remainingTime)
+    stopIsActive = true
+}
 
 function showSpan(e) {
       if (e) {
@@ -76,13 +109,14 @@ function showSpan(e) {
 }
 
 function startGame(e) {
-  
+
     if (startIsActive) {
         return
     }
     startIsActive = true
+    stopIsActive = null
     remainingTime = 5
-    spanRemainingTimeRef.textContent = remainingTime
+    spanRemainingTimeRef.textContent = pad(remainingTime)
     startTimer()
   
 }
@@ -120,6 +154,17 @@ function removeClassBlue(e) {
     defBoxBlue()
     boxBlue.classList.remove('move-blue') 
 }
+// boxPurple
+function removeClassPurple(e) {
+    showSpan(e)
+    if (e) {
+        console.log(e);
+        countsPoints()
+    }
+    defboxPurple()
+    boxPurple.classList.remove('move-purple') 
+}
+
 
 
 function startTimer() {
@@ -131,23 +176,26 @@ function startTimer() {
           defBoxGren()
         boxGreen.classList.remove('move-green') 
         defBoxBlue()
-        boxBlue.classList.remove('move-blue') 
+         boxBlue.classList.remove('move-blue') 
+          defboxPurple()
+         boxPurple.classList.remove('move-purple') 
         return
     }
     timer +=1
-    spanTaimerRef.textContent = timer
+    spanTaimerRef.textContent = pad(timer)
 
     remainingTime -=1 // оставшееся время
-    spanRemainingTimeRef.textContent = remainingTime
+    spanRemainingTimeRef.textContent = pad(remainingTime)
              if (remainingTime <= 2) {
                 //  spanRemainingTimeRef.classList.add('safely') 
                  spanRemainingTimeRef.classList.add('danger')       
                 } else {
                     spanRemainingTimeRef.classList.remove('danger')
       }
-    createAndRemyveBox()
-    createAndRemyveGreenBox()
-    createAndRemyveBlueBox()
+             createAndRemyveBox()
+             createAndRemyveGreenBox()
+             createAndRemyveBlueBox()
+             createAndRemyvePurpleBox()
    
     
 }, 1000);
@@ -157,7 +205,7 @@ function countsPoints() {
     points += 1
     remainingTime += 1
 
-    spanRemainingTimeRef.textContent = remainingTime
+    spanRemainingTimeRef.textContent = pad(remainingTime)
     spanPoints.textContent = points
 }
 
@@ -201,6 +249,18 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
         }
 }
 
+// ____________________________
+function createAndRemyvePurpleBox() {
+if (timer === 1||timer ===4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28 ) {
+    boxPurple.classList.add('move-purple')
+    boxPurple.addEventListener('click', removeClassPurple)
+    boxPurple.style.transform = `translate(${kappa}px, ${-25}px)`; //Двигает зеленый бокс вверх
+    }
+     if (timer ===3|| timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
+         removeClassPurple()   
+         boxPurple.removeEventListener('click', removeClassPurple)
+        }
+}
 
 
 // Модалка 

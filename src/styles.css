@@ -21,6 +21,9 @@ p {
   font-size: 14px;
   margin-bottom: 0px;
 }
+.descr-rules {
+  margin-bottom: 14px;
+}
 
 .btn {
   text-decoration: none;
@@ -124,6 +127,15 @@ p {
   background-repeat: no-repeat;
 }
 
+.box-blue-js {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: url(./images/b4.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .move-blue {
   position: absolute;
   margin: 12px;
@@ -134,6 +146,28 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
+/* __ */
+.box-purple-js {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: url(./images/b6.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.move-purple {
+  position: absolute;
+  margin: 12px;
+  transition: 2000ms cubic-bezier(0, 0, 0, 0.7);
+  z-index: 2;
+  width: 55px;
+  height: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* __ */
 
 .box-green-js {
   position: absolute;
@@ -157,14 +191,6 @@ p {
   font-size: 40px;
   text-shadow: -1px -1px 1px rgb(197, 194, 194), 1px -1px 1px silver;
   color: rgb(39, 39, 39);
-}
-.box-blue-js {
-  position: absolute;
-  width: 55px;
-  height: 55px;
-  background: url(./images/b4.png);
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .span-text {
