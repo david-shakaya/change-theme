@@ -10,6 +10,7 @@ const spanTaimerRef = document.querySelector('.timer');
 const spanRemainingTimeRef =document.querySelector('.header-text-time');
 const ilListPlayersRef = document.querySelector('.list-players');
 const bodyRef = document.querySelector('body');
+const closeBatton = document.querySelector('.close-btn');
 
 
 
@@ -49,6 +50,7 @@ let zeta = 0
 let timer = 0
 let points = 0;
 let remainingTime = 5
+let idInterval = null
 
 let startIsActive = null
 // Рандомное местоположение
@@ -91,6 +93,8 @@ function startGame(e) {
         return
     }
     startIsActive = true
+    remainingTime = 5
+    spanRemainingTimeRef.textContent = remainingTime
     startTimer()
   
 }
@@ -105,8 +109,9 @@ function removeClass(e) {
     
 // defBoxBacground()
 
-        box.classList.remove('move') 
-        
+    box.classList.remove('move') 
+    
+
 }
 function removeClassGreen(e) {
     showSpan(e)
@@ -115,9 +120,8 @@ function removeClassGreen(e) {
         countsPoints()
     }
     defBoxGren()
-// defBoxGrenBacground()
-
     boxGreen.classList.remove('move-green') 
+
 }
 
 function removeClassBlue(e) {
@@ -132,9 +136,15 @@ function removeClassBlue(e) {
 
 
 function startTimer() {
-    setInterval(() => {
+         idInterval = setInterval(() => {
      if (remainingTime === 0) {
-        onOpenModal()
+         onOpenModal()
+         defBox()
+         box.classList.remove('move')
+          defBoxGren()
+        boxGreen.classList.remove('move-green') 
+        defBoxBlue()
+        boxBlue.classList.remove('move-blue') 
         return
     }
     timer +=1
@@ -142,6 +152,12 @@ function startTimer() {
 
     remainingTime -=1 // оставшееся время
     spanRemainingTimeRef.textContent = remainingTime
+             if (remainingTime <= 2) {
+                //  spanRemainingTimeRef.classList.add('safely') 
+                 spanRemainingTimeRef.classList.add('danger')       
+                } else {
+                    spanRemainingTimeRef.classList.remove('danger')
+      }
     createAndRemyveBox()
     createAndRemyveGreenBox()
     createAndRemyveBlueBox()
@@ -153,18 +169,20 @@ function startTimer() {
 function countsPoints() {
     points += 1
     remainingTime += 1
+
     spanRemainingTimeRef.textContent = remainingTime
     spanPoints.textContent = points
 }
 
 function createAndRemyveBox() {
 
+
  if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
     box.classList.add('move')
      box.addEventListener('click', removeClass)
      box.style.transform = `translate(${delta}px, ${-25}px)`;
     }
-     if (timer === 3 || timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
+     if (timer ===3|| timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
          removeClass()   
          box.addEventListener('click', removeClass)
          
@@ -177,7 +195,7 @@ if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||tim
     boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
 
     }
-     if (timer === 4 || timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
+     if ( timer ===4|| timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
          removeClassGreen()   
     boxGreen.removeEventListener('click', removeClassGreen)     
         }
@@ -197,7 +215,12 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
 }
 
 
-     
+    //  function closeModalIfClick() {
+    //      closeBatton.addEventListener('click', onPressEscape)
+    //      remainingTime = 5
+    //      startIsActive = null
+    //      console.log('');
+    //  }
 
 // Модалка 
 
@@ -205,25 +228,35 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
 // //Закрывает модалку при нажатии esc. На window вешаем слушатель keydown.
 // // На место колбека передаем функцию onPressEscape которая и закрівает модалку.
 function onOpenModal() {
-  window.addEventListener('keydown', onPressEscape)
-  bodyRef.classList.add('show-modal')
+    window.addEventListener('keydown', onPressEscape)
+    closeBatton.addEventListener('click', onCloseModal)
+    console.log(closeBatton);
+    btnStartRef.removeEventListener('click', startGame)
+    startIsActive = null
+    bodyRef.classList.add('show-modal')
+    clearInterval(idInterval);
+    spanRemainingTimeRef.classList.remove('danger')
+        
 }
 
-function onCloseModal() {
-  window.removeEventListener('keydown', onPressEscape)
-  bodyRef.classList.remove('show-modal')
-}
+function onCloseModal(e) {
+    if (e) {
+    closeBatton.removeEventListener('click', onPressEscape)
+    }
+   window.removeEventListener('keydown', onPressEscape)
+   btnStartRef.addEventListener('click', startGame)
+   bodyRef.classList.remove('show-modal')
 
-function onBackdropClick(event) {
-  if (event.target === event.currentTarget) {
-   onCloseModal()
-  }
+   timer = 0
+   spanTaimerRef.textContent = timer
+   points =0
+   spanPoints.textContent = points
 }
-
 
 function onPressEscape (event) {
-  if (event.code === 'Escape') {
-      onCloseModal()
+    if (event.code === 'Escape') {  
+        onCloseModal()
+        console.log('df');
     }
   }
   

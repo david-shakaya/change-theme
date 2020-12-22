@@ -19,7 +19,9 @@ li {
 p {
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
+  margin-bottom: 0px;
 }
+
 .btn {
   text-decoration: none;
   color: #fff;
@@ -164,6 +166,28 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.span-text {
+  display: block;
+  height: 25px;
+  width: 50px;
+  font-size: 18px;
+  border: solid 1px gray;
+  background-color: rgb(228, 228, 228);
+}
+.header-text-time {
+  transition: 01s;
+  background-color: rgb(182, 255, 186);
+}
+
+.danger {
+  transition: 01s;
+  background-color: rgb(255, 60, 60);
+}
+/* .safely {
+  transition: 01s;
+  background-color: rgb(182, 255, 186);
+} */
 
 .modal {
   padding: 10px;
