@@ -7,6 +7,7 @@ const btnStartRef = document.querySelector('.menu-btn-start');
 const btnNewGameRef =document.querySelector('.menu-btn-newGame');
 const spanPoints = document.querySelector('.header-text-points');
 const spanTaimerRef = document.querySelector('.timer');
+const spanRemainingTimeRef =document.querySelector('.header-text-time');
 const ilListPlayersRef = document.querySelector('.list-players');
 const bodyRef = document.querySelector('body');
 
@@ -47,6 +48,7 @@ let beta = 0
 let zeta = 0
 let timer = 0
 let points = 0;
+let remainingTime = 5
 
 let startIsActive = null
 // Рандомное местоположение
@@ -74,7 +76,7 @@ function showSpan(e) {
           let X =e.clientX
           textAnimationRef().style.top = Y + 'px'
           textAnimationRef().style.left = X +'px' 
-          textAnimationRef().textContent ='+2'
+          textAnimationRef().textContent ='+1'
     }
     setTimeout(() => {
         textAnimationRef().classList.remove('text-animation-js')
@@ -130,21 +132,28 @@ function removeClassBlue(e) {
 
 
 function startTimer() {
-setInterval(() => {
+    setInterval(() => {
+     if (remainingTime === 0) {
+        onOpenModal()
+        return
+    }
     timer +=1
     spanTaimerRef.textContent = timer
+
+    remainingTime -=1 // оставшееся время
+    spanRemainingTimeRef.textContent = remainingTime
     createAndRemyveBox()
     createAndRemyveGreenBox()
     createAndRemyveBlueBox()
-    if (timer === 3) {
-        onOpenModal()
-    }
+   
     
 }, 1000);
 }
 
 function countsPoints() {
-    points += 2
+    points += 1
+    remainingTime += 1
+    spanRemainingTimeRef.textContent = remainingTime
     spanPoints.textContent = points
 }
 

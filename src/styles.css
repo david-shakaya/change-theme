@@ -57,7 +57,6 @@ p {
 }
 
 .menu-list {
-  margin-right: 200px;
   display: inherit;
 }
 .menu-list > li {
@@ -146,7 +145,7 @@ p {
   font-size: 10px;
   text-shadow: 1px 1px 1px silver, -1px 1px 1px silver;
   color: white;
-  transition: all 0.02s;
+  transition: all 0.05s;
 }
 
 .text-animation-js {
