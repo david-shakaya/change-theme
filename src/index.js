@@ -11,6 +11,9 @@ const spanRemainingTimeRef =document.querySelector('.header-text-time');
 const ilListPlayersRef = document.querySelector('.list-players');
 const bodyRef = document.querySelector('body');
 const closeBatton = document.querySelector('.close-btn');
+const formRef =()=> document.querySelector('.form-action');
+const inputRef = () => document.querySelector('.input-js');
+
 
 
 
@@ -25,22 +28,12 @@ const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
 
+//Добавля в локал хран при повторном захлде
+const nameUser = localStorage.getItem('nameUser');
+const pointUser = localStorage.getItem('points');
 
+ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
 
-// const balls = [
-//     'url(./images/b1.png) contain)',
-//     'url(./images/b2.png) contain)',
-//     'url(./images/b3.png) contain)',
-//     'url(./images/b4.png) contain)',
-//     'url(./images/b5.png) contain)',
-//     'url(./images/b6.png) contain)',
-//     'url(./images/b7.png) contain)'
-// ]
-// const randomBalls =()=> balls[Math.floor(Math.random() * balls.length)];
-// console.log(randomBalls());
-// console.log(randomBalls());
-// const x = Math.floor(Math.random() * 780);
-// const newX = Math.floor(Math.random() * 780);
 
 const randomNumber = () => Math.floor(Math.random() * 655);
 
@@ -57,18 +50,13 @@ let startIsActive = null
 const defBox = () => box.style.transform = `translate(${delta = randomNumber()}px, ${402}px)`;
 const defBoxGren = () => boxGreen.style.transform = `translate(${beta = randomNumber()}px, ${402}px)`;
 const defBoxBlue = () => boxBlue.style.transform = `translate(${zeta = randomNumber()}px, ${402}px)`;
-// // Рандомный цвет шарика
-// const defBoxBacground = () => box.style.background  = `${randomBalls()}` ;
-// const defBoxGrenBacground = () =>  boxGreen.style.background  = `${randomBalls()}`;
-// const defBoxBlueBacground = () => boxBlue.style.background  = `${randomBalls()}`;
+
 
 defBox()
 defBoxGren()
 defBoxBlue()
 
-// defBoxBacground()
-// defBoxGrenBacground()
-// defBoxBlueBacground()
+
 btnStartRef.addEventListener('click', startGame)
 
 function showSpan(e) {
@@ -107,7 +95,6 @@ function removeClass(e) {
     }
     defBox() // Местоположение перед выездом
     
-// defBoxBacground()
 
     box.classList.remove('move') 
     
@@ -215,12 +202,6 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
 }
 
 
-    //  function closeModalIfClick() {
-    //      closeBatton.addEventListener('click', onPressEscape)
-    //      remainingTime = 5
-    //      startIsActive = null
-    //      console.log('');
-    //  }
 
 // Модалка 
 
@@ -236,7 +217,12 @@ function onOpenModal() {
     bodyRef.classList.add('show-modal')
     clearInterval(idInterval);
     spanRemainingTimeRef.classList.remove('danger')
-        
+    
+    console.log(spanPoints.textContent);
+    findForm()
+    
+// Находит форму в Дом и добавляет слушатель 
+  
 }
 
 function onCloseModal(e) {
@@ -258,5 +244,45 @@ function onPressEscape (event) {
         onCloseModal()
         console.log('df');
     }
-  }
+}
   
+function findForm() {
+    formRef().addEventListener('submit', handleSubmit)
+     
+}
+  
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const inputName = inputRef().value
+            const points = (spanPoints.textContent)
+            if (inputName === '') {
+                console.log('Неправильно!');
+            } else {
+            formRef().removeEventListener('submit', handleSubmit)
+             formRef().reset()
+               onCloseModal()
+                console.log(`Спасибо ${inputName}`);
+                saveLocalStorage(inputName,points)
+                
+    
+            }
+}
+
+    function saveLocalStorage(inputName, points) { //сохраня в локал стораж
+        localStorage.setItem('nameUser', inputName)
+        localStorage.setItem('points', points)
+        
+    if (localStorage.getItem('nameUser')) {
+        const nameUser = localStorage.getItem('nameUser');
+        const pointUser = localStorage.getItem('points');
+        addNameInTable(nameUser, pointUser)
+        console.log(pointUser);
+        console.log(nameUser);
+    }
+}
+
+function addNameInTable(nameUser,points ) {
+     
+    ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
+}
