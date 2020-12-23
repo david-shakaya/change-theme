@@ -214,25 +214,25 @@ function createAndRemyveBox() {
 
  if (timer === 1||timer === 4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
     box.classList.add('move')
-     box.addEventListener('click', removeClass)
+     box.addEventListener('mousedown', removeClass)
      box.style.transform = `translate(${delta}px, ${-25}px)`;
     }
      if (timer ===3|| timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
          removeClass()   
-         box.addEventListener('click', removeClass)
+         box.addEventListener('mousedown', removeClass)
          
         }
 }
 function createAndRemyveGreenBox() {
 if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||timer===17 || timer ===20 || timer===23 || timer===26 ) {
     boxGreen.classList.add('move-green')
-     boxGreen.addEventListener('click', removeClassGreen)
+     boxGreen.addEventListener('mousedown', removeClassGreen)
     boxGreen.style.transform = `translate(${beta}px, ${-25}px)`; //Двигает зеленый бокс вверх
 
     }
      if ( timer ===4|| timer === 7|| timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28) {
          removeClassGreen()   
-    boxGreen.removeEventListener('click', removeClassGreen)     
+    boxGreen.removeEventListener('mousedown', removeClassGreen)     
         }
 }
 
@@ -240,12 +240,12 @@ if (timer === 2||timer === 5 || timer === 8 || timer === 11 || timer === 14||tim
 function createAndRemyveBlueBox() {
 if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||timer===13 || timer ===15 || timer===17 || timer===19||timer===21 || timer ===23 || timer===25 || timer===27|| timer===29 ) {
     boxBlue.classList.add('move-blue')
-    boxBlue.addEventListener('click', removeClassBlue)
+    boxBlue.addEventListener('mousedown', removeClassBlue)
     boxBlue.style.transform = `translate(${zeta}px, ${-25}px)`; //Двигает зеленый бокс вверх
     }
      if (timer === 4 || timer === 6|| timer === 8 || timer === 10||timer===12 || timer ===14 || timer===16 || timer===18 || timer===20 || timer ===22 || timer===24 || timer===26 || timer===28|| timer ===30) {
          removeClassBlue()   
-         boxBlue.removeEventListener('click', removeClassBlue)
+         boxBlue.removeEventListener('mousedown', removeClassBlue)
         }
 }
 
@@ -253,12 +253,12 @@ if (timer === 3||timer === 5 || timer === 7 || timer === 9 || timer === 11||time
 function createAndRemyvePurpleBox() {
 if (timer === 1||timer ===4 || timer === 7 || timer === 10 || timer === 13||timer===16 || timer ===19 || timer===22 || timer===25 || timer===28 ) {
     boxPurple.classList.add('move-purple')
-    boxPurple.addEventListener('click', removeClassPurple)
+    boxPurple.addEventListener('mousedown', removeClassPurple)
     boxPurple.style.transform = `translate(${kappa}px, ${-25}px)`; //Двигает зеленый бокс вверх
     }
      if (timer ===3|| timer === 6 || timer === 9 || timer === 12||timer===15 || timer ===18 || timer===21 || timer===24 || timer===27 ||timer===30) {
          removeClassPurple()   
-         boxPurple.removeEventListener('click', removeClassPurple)
+         boxPurple.removeEventListener('mousedown', removeClassPurple)
         }
 }
 
