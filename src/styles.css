@@ -1,6 +1,7 @@
 body {
   background-color: #ffffff;
   font-family: 'Roboto', sans-serif;
+  user-select: none;
   font-size: 14px;
   color: #212121;
 }
@@ -189,9 +190,8 @@ p {
 
 .text-animation-js {
   position: absolute;
-
   z-index: 10;
-  font-size: 40px;
+  font-size: 35px;
   text-shadow: -1px -1px 1px rgb(197, 194, 194), 1px -1px 1px silver;
   color: rgb(39, 39, 39);
 }
