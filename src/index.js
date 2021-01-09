@@ -11,15 +11,12 @@ refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " 
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-purple-js " ></div>');
-// const createTextPoints = ()=> divGameAreaRef.insertAdjacentHTML('beforebegin', '<span class="text-animation-js" >+2</span>');
 
 const box = document.querySelector('.box-red-js');
 const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const boxPurple = document.querySelector('.box-purple-js');
 const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
-// 1) Експортировать таймер отсюда
-// експортировать отсюда showSpan,countsPoints,defboxPurple
 
 
 //Добавля в локал хран при повторном захлде
@@ -53,8 +50,6 @@ defBox()
 defBoxGren()
 defBoxBlue()
 defboxPurple()
-
-
 
 
 refs.btnStartRef.addEventListener('click', startGame)
@@ -106,8 +101,6 @@ function startGame() {
     startTimer()
   
 }
-
-
 
 function startTimer() {
          idInterval = setInterval(() => {
