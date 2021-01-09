@@ -1,25 +1,16 @@
 
 import '../src/styles.css'
+import {refs} from './js/refs.js'
 
 
-const divGameAreaRef = document.querySelector('.wrapper-game-area');
-const btnStartRef = document.querySelector('.menu-btn-start');
-const btnStopRef =document.querySelector('.menu-btn-stop');
-const spanPoints = document.querySelector('.header-text-points');
-const spanTaimerRef = document.querySelector('.timer');
-const spanRemainingTimeRef =document.querySelector('.header-text-time');
-const ilListPlayersRef = document.querySelector('.list-players');
-const bodyRef = document.querySelector('body');
-const closeBatton = document.querySelector('.close-btn');
-const pointsResult = document.querySelector('.points-result-js');
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
 
 
-divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
-divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
-divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
-divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-purple-js " ></div>');
+refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
+refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
+refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
+refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-purple-js " ></div>');
 // const createTextPoints = ()=> divGameAreaRef.insertAdjacentHTML('beforebegin', '<span class="text-animation-js" >+2</span>');
 
 const box = document.querySelector('.box-red-js');
@@ -32,7 +23,7 @@ const textAnimationRef = () => document.querySelector('.span-js'); //ищет к
 const nameUser = localStorage.getItem('nameUser');
 const pointUser = localStorage.getItem('points');
 
-ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
+refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
 
 
 const randomNumber = () => Math.floor(Math.random() * 655);
@@ -70,8 +61,8 @@ defboxPurple()
 
 
 
-btnStartRef.addEventListener('click', startGame)
-btnStopRef.addEventListener('click',stopGame)
+refs.btnStartRef.addEventListener('click', startGame)
+refs.btnStopRef.addEventListener('click',stopGame)
 
 function stopGame() {
     if (stopIsActive) {
@@ -88,7 +79,7 @@ function stopGame() {
          boxPurple.classList.remove('move-purple') 
     onCloseModal()
     remainingTime = 5
-    spanRemainingTimeRef.textContent = pad(remainingTime)
+    refs.spanRemainingTimeRef.textContent = pad(remainingTime)
     stopIsActive = true
 }
 
@@ -116,7 +107,7 @@ function startGame(e) {
     startIsActive = true
     stopIsActive = null
     remainingTime = 5
-    spanRemainingTimeRef.textContent = pad(remainingTime)
+    refs.spanRemainingTimeRef.textContent = pad(remainingTime)
     startTimer()
   
 }
@@ -182,15 +173,15 @@ function startTimer() {
         return
     }
     timer +=1
-    spanTaimerRef.textContent = pad(timer)
+    refs.spanTaimerRef.textContent = pad(timer)
 
     remainingTime -=1 // оставшееся время
-    spanRemainingTimeRef.textContent = pad(remainingTime)
+    refs.spanRemainingTimeRef.textContent = pad(remainingTime)
              if (remainingTime <= 2) {
                 //  spanRemainingTimeRef.classList.add('safely') 
-                 spanRemainingTimeRef.classList.add('danger')       
+                 refs.spanRemainingTimeRef.classList.add('danger')       
                 } else {
-                    spanRemainingTimeRef.classList.remove('danger')
+                    refs.spanRemainingTimeRef.classList.remove('danger')
       }
              createAndRemyveBox()
              createAndRemyveGreenBox()
@@ -205,8 +196,8 @@ function countsPoints() {
     points += 1
     remainingTime += 1
 
-    spanRemainingTimeRef.textContent = pad(remainingTime)
-    spanPoints.textContent = points
+    refs.spanRemainingTimeRef.textContent = pad(remainingTime)
+    refs.spanPoints.textContent = points
 }
 
 function createAndRemyveBox() {
@@ -270,16 +261,15 @@ if (timer === 1||timer ===4 || timer === 7 || timer === 10 || timer === 13||time
 // // На место колбека передаем функцию onPressEscape которая и закрівает модалку.
 function onOpenModal() {
     window.addEventListener('keydown', onPressEscape)
-    closeBatton.addEventListener('click', onCloseModal)
-    console.log(closeBatton);
-    btnStartRef.removeEventListener('click', startGame)
+    refs.closeBatton.addEventListener('click', onCloseModal)
+    refs.btnStartRef.removeEventListener('click', startGame)
     startIsActive = null
-    bodyRef.classList.add('show-modal')
+    refs.bodyRef.classList.add('show-modal')
     clearInterval(idInterval);
-    spanRemainingTimeRef.classList.remove('danger')
+    refs.spanRemainingTimeRef.classList.remove('danger')
     
     // console.log(spanPoints.textContent);
-    pointsResult.innerHTML = `Количество набранных очков: ${spanPoints.textContent}`
+    refs.pointsResult.innerHTML = `Количество набранных очков: ${refs.spanPoints.textContent}`
     findForm()
     
 // Находит форму в Дом и добавляет слушатель 
@@ -288,16 +278,16 @@ function onOpenModal() {
 
 function onCloseModal(e) {
     if (e) {
-    closeBatton.removeEventListener('click', onPressEscape)
+    refs.closeBatton.removeEventListener('click', onPressEscape)
     }
    window.removeEventListener('keydown', onPressEscape)
-   btnStartRef.addEventListener('click', startGame)
-   bodyRef.classList.remove('show-modal')
+   refs.btnStartRef.addEventListener('click', startGame)
+   refs.bodyRef.classList.remove('show-modal')
 
    timer = 0
-   spanTaimerRef.textContent = timer
+   refs.spanTaimerRef.textContent = timer
    points =0
-   spanPoints.textContent = points
+   refs.spanPoints.textContent = points
 }
 
 function onPressEscape (event) {
@@ -316,7 +306,7 @@ function findForm() {
         function handleSubmit(e) {
             e.preventDefault();
             const inputName = inputRef().value
-            const points = (spanPoints.textContent)
+            const points = (refs.spanPoints.textContent)
             if (inputName === '') {
                 console.log('Неправильно!');
             } else {
@@ -343,5 +333,5 @@ function findForm() {
 
 function addNameInTable(nameUser,points ) {
      
-    ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
+    refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
 }
