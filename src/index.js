@@ -6,7 +6,7 @@ import {createAndRemyveBox,createAndRemyveGreenBox,createAndRemyveBlueBox,create
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
 
-
+// Вот почему не могло найти. Это
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
 refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
@@ -17,8 +17,10 @@ const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const boxPurple = document.querySelector('.box-purple-js');
 const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
+// 1) Експортировать таймер отсюда
+// експортировать отсюда showSpan,countsPoints,defboxPurple
 
-
+console.log(refs.box);
 //Добавля в локал хран при повторном захлде
 const nameUser = localStorage.getItem('nameUser');
 const pointUser = localStorage.getItem('points');
@@ -226,4 +228,4 @@ function addNameInTable(nameUser,points ) {
      
     refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
 }
-export {timer,showSpan,countsPoints,defboxPurple,box,boxGreen,boxBlue,boxPurple,defBox,defBoxGren,defBoxBlue}
+export {timer,showSpan,countsPoints,defboxPurple,box,boxGreen,boxBlue,boxPurple}
