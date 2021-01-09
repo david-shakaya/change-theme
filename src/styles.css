@@ -17,7 +17,7 @@ li {
 }
 
 p {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   margin-bottom: 0px;
 }
@@ -59,13 +59,16 @@ p {
 .wrapper-header-element {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .menu-list {
   display: inherit;
+  margin-right: 90px;
 }
-.menu-list > li {
-  margin-right: 50px;
+
+.menu-list > li:not(:last-child) {
+  margin-right: 15px;
 }
 
 .header-wrapper > ul {
@@ -246,14 +249,14 @@ p {
 .close-btn:hover,
 .close-btn:focus {
   color: #fff;
-  background-color: #2196f3;
+  background-color: #26a69a;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 3px 1px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
 }
-svg:hover {
+/* svg:hover {
   fill: #fff;
-}
+} */
 
 body.show-modal .backdrop {
   opacity: 1;
@@ -288,7 +291,7 @@ body.show-modal .modal {
   border-radius: 4px;
   max-width: 450px;
   width: 100%;
-  min-height: 200;
+  min-height: 157px;
 
   background-color: #fff;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
@@ -298,6 +301,9 @@ body.show-modal .modal {
   transition: transform 200ms ease-in-out;
 }
 
+.input-js {
+  margin-top: 14px;
+}
 .description-footer {
   width: 750px;
   position: absolute;

@@ -11,9 +11,9 @@ const spanRemainingTimeRef =document.querySelector('.header-text-time');
 const ilListPlayersRef = document.querySelector('.list-players');
 const bodyRef = document.querySelector('body');
 const closeBatton = document.querySelector('.close-btn');
+const pointsResult = document.querySelector('.points-result-js');
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
-
 
 
 divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
@@ -169,7 +169,7 @@ function removeClassPurple(e) {
 
 function startTimer() {
          idInterval = setInterval(() => {
-     if (remainingTime === 0) {
+     if (remainingTime === 4) {
          onOpenModal()
          defBox()
          box.classList.remove('move')
@@ -278,7 +278,8 @@ function onOpenModal() {
     clearInterval(idInterval);
     spanRemainingTimeRef.classList.remove('danger')
     
-    console.log(spanPoints.textContent);
+    // console.log(spanPoints.textContent);
+    pointsResult.innerHTML = `Количество набранных очков: ${spanPoints.textContent}`
     findForm()
     
 // Находит форму в Дом и добавляет слушатель 
@@ -337,8 +338,6 @@ function findForm() {
         const nameUser = localStorage.getItem('nameUser');
         const pointUser = localStorage.getItem('points');
         addNameInTable(nameUser, pointUser)
-        console.log(pointUser);
-        console.log(nameUser);
     }
 }
 
