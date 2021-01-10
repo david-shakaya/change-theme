@@ -1,4 +1,5 @@
-import {timer,showSpan,countsPoints,box,boxGreen,boxBlue,boxPurple} from '../index'
+import { timer, countsPoints, box, boxGreen, boxBlue, boxPurple } from '../index'
+import showSpan from './showSpanOnClick'
 
 const randomNumber = () => Math.floor(Math.random() * 655);
 let delta = 0
@@ -67,7 +68,6 @@ if (timer === 1||timer ===4 || timer === 7 || timer === 10 || timer === 13||time
 function removeClass(e) {
     showSpan(e)
     if (e) {
-        console.log(e);
         countsPoints()
     }
     defBox() // Местоположение перед выездом
@@ -77,7 +77,6 @@ function removeClass(e) {
 function removeClassGreen(e) {
     showSpan(e)
     if (e) {
-        console.log(e);
         countsPoints()
     }
     defBoxGren()
@@ -88,7 +87,6 @@ function removeClassGreen(e) {
 function removeClassBlue(e) {
     showSpan(e)
     if (e) {
-        console.log(e);
         countsPoints()
     }
     defBoxBlue()
@@ -98,7 +96,6 @@ function removeClassBlue(e) {
 function removeClassPurple(e) {
     showSpan(e)
     if (e) {
-        console.log(e);
         countsPoints()
     }
     defboxPurple()

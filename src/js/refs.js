@@ -9,9 +9,5 @@ const refs = {
     bodyRef: document.querySelector('body'),
     closeBatton: document.querySelector('.close-btn'),
     pointsResult: document.querySelector('.points-result-js'),
-    box: document.querySelector('.box-red-js'),
-    boxGreen: document.querySelector('.box-green-js'),
-    boxBlue: document.querySelector('.box-blue-js'),
-    boxPurple: document.querySelector('.box-purple-js'),
 }
 export {refs}

@@ -1,31 +1,26 @@
 import '../src/styles.css'
+import './js/addBoxesInDom.js'
 import { refs } from './js/refs.js'
 import {createAndRemyveBox,createAndRemyveGreenBox,createAndRemyveBlueBox,createAndRemyvePurpleBox,defBox,defBoxGren,defBoxBlue,defboxPurple} from './js/createRemyveBox.js'
-
 
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
 
-// Вот почему не могло найти. Это
-refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-red-js " ></div>');
-refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-green-js " ></div>');
-refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-blue-js " ></div>');
-refs.divGameAreaRef.insertAdjacentHTML('beforebegin', '<div class="box-purple-js " ></div>');
-
+//Ищет статические боксы после добавления в дом 
 const box = document.querySelector('.box-red-js');
 const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const boxPurple = document.querySelector('.box-purple-js');
-const textAnimationRef = () => document.querySelector('.span-js'); //ищет класс
-// 1) Експортировать таймер отсюда
-// експортировать отсюда showSpan,countsPoints,defboxPurple
 
-console.log(refs.box);
-//Добавля в локал хран при повторном захлде
+
+
+//Возращаем с локал хран т добавл в дом при повторном заходе
 const nameUser = localStorage.getItem('nameUser');
 const pointUser = localStorage.getItem('points');
-
-refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
+if (nameUser) {
+    refs.ilListPlayersRef.insertAdjacentHTML('beforeend',
+    `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
+}
 
 
 
@@ -40,14 +35,11 @@ let timer = 0
 let points = 0;
 let remainingTime = 5
 let idInterval = null
-
 let startIsActive = null
-let stopIsActive =null
-// Рандомное местоположение
-
-// const defBoxPurple
+let stopIsActive = null
 
 
+// Рандомное статическое местоположение
 defBox()
 defBoxGren()
 defBoxBlue()
@@ -76,21 +68,7 @@ function stopGame() {
     stopIsActive = true
 }
 
-function showSpan(e) {
-      if (e) {
-        textAnimationRef().classList.add('text-animation-js')
-          let Y = e.clientY
-          let X =e.clientX
-          textAnimationRef().style.top = Y + 'px'
-          textAnimationRef().style.left = X +'px' 
-          textAnimationRef().textContent ='+1'
-    }
-    setTimeout(() => {
-        textAnimationRef().classList.remove('text-animation-js')
-        textAnimationRef().textContent =''
-    }, 500);
-    
-}
+
 
 function startGame() {
     if (startIsActive) {
@@ -160,8 +138,6 @@ function onOpenModal() {
     refs.bodyRef.classList.add('show-modal')
     clearInterval(idInterval);
     refs.spanRemainingTimeRef.classList.remove('danger')
-    
-    // console.log(spanPoints.textContent);
     refs.pointsResult.innerHTML = `Количество набранных очков: ${refs.spanPoints.textContent}`
     findForm()
     
@@ -186,7 +162,6 @@ function onCloseModal(e) {
 function onPressEscape (event) {
     if (event.code === 'Escape') {  
         onCloseModal()
-        console.log('df');
     }
 }
   
@@ -208,8 +183,6 @@ function findForm() {
                onCloseModal()
                 console.log(`Спасибо ${inputName}`);
                 saveLocalStorage(inputName,points)
-                
-    
             }
 }
 
@@ -228,4 +201,4 @@ function addNameInTable(nameUser,points ) {
      
     refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
 }
-export {timer,showSpan,countsPoints,defboxPurple,box,boxGreen,boxBlue,boxPurple}
+export {timer,countsPoints,defboxPurple,box,boxGreen,boxBlue,boxPurple}
