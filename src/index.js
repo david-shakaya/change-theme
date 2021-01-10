@@ -1,7 +1,8 @@
 import '../src/styles.css'
 import './js/addBoxesInDom.js'
 import { refs } from './js/refs.js'
-import {createAndRemyveBox,createAndRemyveGreenBox,createAndRemyveBlueBox,createAndRemyvePurpleBox,defBox,defBoxGren,defBoxBlue,defboxPurple} from './js/createRemyveBox.js'
+import { createAndRemyveBox, createAndRemyveGreenBox, createAndRemyveBlueBox, createAndRemyvePurpleBox, defBox, defBoxGren, defBoxBlue, defboxPurple } from './js/createRemyveBox.js'
+import {saveLocalStorage, getNameAndPoint} from './js/savesLocalStorage.js'
 
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
@@ -12,15 +13,7 @@ const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const boxPurple = document.querySelector('.box-purple-js');
 
-
-
-//Возращаем с локал хран т добавл в дом при повторном заходе
-const nameUser = localStorage.getItem('nameUser');
-const pointUser = localStorage.getItem('points');
-if (nameUser) {
-    refs.ilListPlayersRef.insertAdjacentHTML('beforeend',
-    `<li class="list-item-players">${nameUser}: ${pointUser} очков</li>`)
-}
+getNameAndPoint()
 
 
 
@@ -186,19 +179,4 @@ function findForm() {
             }
 }
 
-    function saveLocalStorage(inputName, points) { //сохраня в локал стораж
-        localStorage.setItem('nameUser', inputName)
-        localStorage.setItem('points', points)
-        
-    if (localStorage.getItem('nameUser')) {
-        const nameUser = localStorage.getItem('nameUser');
-        const pointUser = localStorage.getItem('points');
-        addNameInTable(nameUser, pointUser)
-    }
-}
-
-function addNameInTable(nameUser,points ) {
-     
-    refs.ilListPlayersRef.insertAdjacentHTML('beforeend', `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
-}
 export {timer,countsPoints,defboxPurple,box,boxGreen,boxBlue,boxPurple}
