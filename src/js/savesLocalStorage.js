@@ -16,7 +16,7 @@ function addNameInTable(nameUser,points ) {
         `<li class="list-item-players">${nameUser}: ${points} очков</li>`)
 }
 
-//Возращаем с локал хран т добавл в дом при повторном заходе
+//Возращаем с локал хран и добавл в дом при повторном заходе
 function getNameAndPoint () {
     const nameUser = localStorage.getItem('nameUser');
     const pointUser = localStorage.getItem('points');

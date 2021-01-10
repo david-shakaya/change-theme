@@ -1,8 +1,10 @@
 import '../src/styles.css'
+import '../node_modules/toastr/build/toastr.css'
 import './js/addBoxesInDom.js'
 import { refs } from './js/refs.js'
 import { createAndRemyveBox, createAndRemyveGreenBox, createAndRemyveBlueBox, createAndRemyvePurpleBox, defBox, defBoxGren, defBoxBlue, defboxPurple } from './js/createRemyveBox.js'
-import {saveLocalStorage, getNameAndPoint} from './js/savesLocalStorage.js'
+import { saveLocalStorage, getNameAndPoint } from './js/savesLocalStorage.js'
+import { showToastrInfo, showToastrSuccess } from './js/notifications.js'
 
 const formRef =()=> document.querySelector('.form-action');
 const inputRef = () => document.querySelector('.input-js');
@@ -13,16 +15,6 @@ const boxGreen = document.querySelector('.box-green-js');
 const boxBlue = document.querySelector('.box-blue-js');
 const boxPurple = document.querySelector('.box-purple-js');
 
-getNameAndPoint()
-
-
-
-/* padStart()
-  * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
-   */
-function pad(value) {
-    return String(value).padStart('2',0)
-}
 
 let timer = 0
 let points = 0;
@@ -32,15 +24,27 @@ let startIsActive = null
 let stopIsActive = null
 
 
-// Рандомное статическое местоположение
+refs.btnStartRef.addEventListener('click', startGame)
+refs.btnStopRef.addEventListener('click', stopGame)
+
+//Возращаем с локал хран и добавл в дом при повторном заходе
+getNameAndPoint()
+
+// Рандомное статическое местоположение боксов
 defBox()
 defBoxGren()
 defBoxBlue()
 defboxPurple()
+/* padStart()
+  * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
+   */
+function pad(value) {
+    return String(value).padStart('2',0)
+}
 
 
-refs.btnStartRef.addEventListener('click', startGame)
-refs.btnStopRef.addEventListener('click',stopGame)
+
+
 
 function stopGame() {
     if (stopIsActive) {
@@ -117,12 +121,8 @@ function countsPoints() {
     refs.spanPoints.textContent = points
 }
 
-
+console.log(refs.formTitleLowVisible);
 // Модалка 
-
-// /*  ФУНКЦИИ */
-// //Закрывает модалку при нажатии esc. На window вешаем слушатель keydown.
-// // На место колбека передаем функцию onPressEscape которая и закрівает модалку.
 function onOpenModal() {
     window.addEventListener('keydown', onPressEscape)
     refs.closeBatton.addEventListener('click', onCloseModal)
@@ -132,10 +132,8 @@ function onOpenModal() {
     clearInterval(idInterval);
     refs.spanRemainingTimeRef.classList.remove('danger')
     refs.pointsResult.innerHTML = `Количество набранных очков: ${refs.spanPoints.textContent}`
-    findForm()
-    
+    findForm() 
 // Находит форму в Дом и добавляет слушатель 
-  
 }
 
 function onCloseModal(e) {
@@ -163,18 +161,17 @@ function findForm() {
      
 }
   
-
         function handleSubmit(e) {
             e.preventDefault();
             const inputName = inputRef().value
             const points = (refs.spanPoints.textContent)
             if (inputName === '') {
-                console.log('Неправильно!');
+                showToastrInfo()
             } else {
             formRef().removeEventListener('submit', handleSubmit)
              formRef().reset()
-               onCloseModal()
-                console.log(`Спасибо ${inputName}`);
+                onCloseModal()
+                showToastrSuccess(inputName)
                 saveLocalStorage(inputName,points)
             }
 }
